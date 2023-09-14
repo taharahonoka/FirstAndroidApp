@@ -1,6 +1,8 @@
 package com.example.myfirstapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,21 +20,34 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyFirstApplicationTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     Greeting("Android")
                 }
             }
         }
         setContentView(R.layout.activity_main)
 
+        val button = findViewById<Button>(R.id.screen_transition_button)
+        button.setOnClickListener {
+
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+
+        }
     }
+
+
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-            text = "Hello $name!",
-            modifier = modifier
+        text = "Hello $name!",
+        modifier = modifier
     )
 }
 
